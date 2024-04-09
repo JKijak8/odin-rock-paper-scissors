@@ -40,13 +40,36 @@ function playRound() {
       console.log(
         `You lose this round! ${computerSelection} beats ${playerSelection}.`
       );
-      break;
+      return "computer";
     } else {
       console.log(
         `You win this round! ${playerSelection} beats ${computerSelection}.`
       );
-      break;
+      return "player";
     }
+  }
+}
+
+function playGame() {
+  let playerWins = 0;
+  let computerWins = 0;
+  for (let i = 0; i < 5; i++) {
+    let winner = playRound();
+
+    switch (winner) {
+      case "computer":
+        computerWins++;
+        break;
+      case "player":
+        playerWins++;
+        break;
+    }
+  }
+
+  if (playerWins > computerWins) {
+    console.log("You won the game. Congratulations!");
+  } else {
+    console.log("You lost the game.");
   }
 }
 
