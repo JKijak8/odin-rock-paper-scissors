@@ -26,15 +26,27 @@ function getPlayerChoice() {
 }
 
 function playRound() {
-  const playerSelection = getPlayerChoice();
-  const computerSelection = getComputerChoice();
+  while (true) {
+    let playerSelection = getPlayerChoice();
+    let computerSelection = getComputerChoice();
 
-  if (
-    (computerSelection === "Rock" && playerSelection === "Scissors") ||
-    (computerSelection === "Paper" && playerSelection === "Rock") ||
-    (computerSelection === "Scissors" && playerSelection === "Paper")
-  ) {
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+    if (computerSelection == playerSelection) {
+      console.log("Tie! Try again.");
+    } else if (
+      (computerSelection === "Rock" && playerSelection === "Scissors") ||
+      (computerSelection === "Paper" && playerSelection === "Rock") ||
+      (computerSelection === "Scissors" && playerSelection === "Paper")
+    ) {
+      console.log(
+        `You lose this round! ${computerSelection} beats ${playerSelection}.`
+      );
+      break;
+    } else {
+      console.log(
+        `You win this round! ${playerSelection} beats ${computerSelection}.`
+      );
+      break;
+    }
   }
 }
 
