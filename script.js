@@ -19,25 +19,43 @@ function getComputerChoice() {
 function playRound(playerSelection) {
   while (true) {
     let computerSelection = getComputerChoice();
+    let result = document.querySelector("#result");
 
     if (computerSelection === playerSelection) {
-      console.log("Tie! Try again.");
+      result.textContent = "Tie! Try again.";
       return;
     } else if (
       (computerSelection === "Rock" && playerSelection === "Scissors") ||
       (computerSelection === "Paper" && playerSelection === "Rock") ||
       (computerSelection === "Scissors" && playerSelection === "Paper")
     ) {
-      console.log(
-        `You lose this round! ${computerSelection} beats ${playerSelection}.`,
-      );
-      return "computer";
+      result.textContent = `You lose this round! ${computerSelection} beats ${playerSelection}.`;
+      incrementScore("computer");
+      return;
     } else {
-      console.log(
-        `You win this round! ${playerSelection} beats ${computerSelection}.`,
-      );
-      return "player";
+      result.textContent = `You win this round! ${playerSelection} beats ${computerSelection}.`;
+      incrementScore("player");
+      return;
     }
+  }
+}
+
+function incrementScore(winner) {
+  let currentScore;
+  let newScore;
+
+  switch (winner) {
+    case "player":
+      currentScore = document.querySelector("#playerscore");
+      newScore = Number(currentScore.textContent) + 1;
+      currentScore.textContent = newScore;
+      break;
+
+    case "computer":
+      currentScore = document.querySelector("#computerscore");
+      newScore = Number(currentScore.textContent) + 1;
+      currentScore.textContent = newScore;
+      break;
   }
 }
 

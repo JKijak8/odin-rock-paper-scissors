@@ -8,4 +8,21 @@ ul {
 
 main {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
+}
+
+#scoreboard {
+    display: flex;
+    gap: 30px;
+    justify-content: space-evenly;
+    font-weight: bold;
+    text-align: center;
+}
+
+#score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
