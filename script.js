@@ -49,14 +49,29 @@ function incrementScore(winner) {
       currentScore = document.querySelector("#playerscore");
       newScore = Number(currentScore.textContent) + 1;
       currentScore.textContent = newScore;
+      if (newScore >= 5) {
+        displayWinner("Player");
+      }
       break;
 
     case "computer":
       currentScore = document.querySelector("#computerscore");
       newScore = Number(currentScore.textContent) + 1;
       currentScore.textContent = newScore;
+      if (newScore >= 5) {
+        displayWinner("Computer");
+      }
       break;
   }
+}
+
+function displayWinner(winner) {
+  const main = document.querySelector("main");
+  const winnerDiv = document.createElement("div");
+
+  winnerDiv.textContent = `${winner} won!`;
+  winnerDiv.style.fontWeight = "bold";
+  main.appendChild(winnerDiv);
 }
 
 function whichButton(event) {
