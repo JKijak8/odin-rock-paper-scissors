@@ -1,5 +1,6 @@
 let buttons = document.querySelector("#buttons");
 let choice = buttons.addEventListener("click", (event) => {
+  gameReset();
   playRound(whichButton(event));
 });
 
@@ -71,7 +72,23 @@ function displayWinner(winner) {
 
   winnerDiv.textContent = `${winner} won!`;
   winnerDiv.style.fontWeight = "bold";
+  winnerDiv.id = "winner";
   main.appendChild(winnerDiv);
+}
+
+function gameReset() {
+  let compScore = document.querySelector("#computerscore");
+  let playerScore = document.querySelector("#playerscore");
+
+  if (
+    Number(playerScore.textContent) === 5 ||
+    Number(compScore.textContent) === 5
+  ) {
+    compScore.textContent = 0;
+    playerScore.textContent = 0;
+    let winner = document.querySelector("#winner");
+    winner.remove();
+  }
 }
 
 function whichButton(event) {
