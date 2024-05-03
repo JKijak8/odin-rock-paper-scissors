@@ -1,3 +1,8 @@
+let buttons = document.querySelector("#buttons");
+let choice = buttons.addEventListener("click", (event) => {
+  playRound(whichButton(event));
+});
+
 function getComputerChoice() {
   const choice = getRandom(1, 3);
 
@@ -11,27 +16,13 @@ function getComputerChoice() {
   }
 }
 
-function getPlayerChoice() {
+function playRound(playerSelection) {
   while (true) {
-    let choice = prompt("Enter your choice: ");
-    choice = choice.toLowerCase();
-    choice = capitalizeFirst(choice);
-
-    if (choice === "Rock" || choice === "Paper" || choice === "Scissors") {
-      return choice;
-    } else {
-      console.log("Wrong option. Please try again.");
-    }
-  }
-}
-
-function playRound() {
-  while (true) {
-    let playerSelection = getPlayerChoice();
     let computerSelection = getComputerChoice();
 
-    if (computerSelection == playerSelection) {
+    if (computerSelection === playerSelection) {
       console.log("Tie! Try again.");
+      return;
     } else if (
       (computerSelection === "Rock" && playerSelection === "Scissors") ||
       (computerSelection === "Paper" && playerSelection === "Rock") ||
@@ -47,6 +38,18 @@ function playRound() {
       );
       return "player";
     }
+  }
+}
+
+function whichButton(event) {
+  let target = event.target;
+  switch (target.id) {
+    case "rock":
+      return "Rock";
+    case "paper":
+      return "Paper";
+    case "scissors":
+      return "Scissors";
   }
 }
 
