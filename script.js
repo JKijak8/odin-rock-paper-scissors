@@ -8,37 +8,37 @@ function getHumanChoice() {
   return prompt("Choose 'rock', 'paper' or 'scissors'").toLowerCase();
 }
 
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    console.log("Tie! Nobody wins.");
+    return playRound(getHumanChoice(), getComputerChoice());
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    console.log(
+      `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`
+    );
+    return "human";
+  } else {
+    console.log(
+      `You lose! ${capitalize(computerChoice)} beats ${capitalize(
+        humanChoice
+      )}.`
+    );
+    return "computer";
+  }
+}
+
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-      console.log("Tie! Nobody wins.");
-      playRound(getHumanChoice(), getComputerChoice());
-    } else if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "paper" && computerChoice === "rock") ||
-      (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-      console.log(
-        `You win! ${capitalize(humanChoice)} beats ${capitalize(
-          computerChoice
-        )}.`
-      );
-      humanScore++;
-    } else {
-      console.log(
-        `You lose! ${capitalize(computerChoice)} beats ${capitalize(
-          humanChoice
-        )}.`
-      );
-      computerScore++;
-    }
-  }
-
   for (let i = 0; i < 5; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
+    if (playRound(getHumanChoice(), getComputerChoice()) === "human")
+      humanScore++;
+    else computerScore++;
   }
 
   if (humanScore > computerScore) {
