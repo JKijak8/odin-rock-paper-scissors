@@ -39,7 +39,3 @@ function capitalize(word) {
     return word.replace(word[0], word[0].toUpperCase());
   } else return word;
 }
-
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-playRound(humanChoice, computerChoice);
