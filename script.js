@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
 
@@ -14,7 +11,7 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     console.log("Tie! Nobody wins.");
-    playRound(getHumanChoice(), getComputerChoice());
+    return playRound(getHumanChoice(), getComputerChoice());
   } else if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
@@ -23,14 +20,31 @@ function playRound(humanChoice, computerChoice) {
     console.log(
       `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`
     );
-    humanScore++;
+    return "human";
   } else {
     console.log(
       `You lose! ${capitalize(computerChoice)} beats ${capitalize(
         humanChoice
       )}.`
     );
-    computerScore++;
+    return "computer";
+  }
+}
+
+function playGame() {
+  let humanScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    if (playRound(getHumanChoice(), getComputerChoice()) === "human")
+      humanScore++;
+    else computerScore++;
+  }
+
+  if (humanScore > computerScore) {
+    console.log("You win!");
+  } else if (humanScore < computerScore) {
+    console.log("You lose!");
   }
 }
 
