@@ -31,23 +31,6 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    if (playRound(getHumanChoice(), getComputerChoice()) === "human")
-      humanScore++;
-    else computerScore++;
-  }
-
-  if (humanScore > computerScore) {
-    console.log("You win!");
-  } else if (humanScore < computerScore) {
-    console.log("You lose!");
-  }
-}
-
 function capitalize(word) {
   if (typeof word === "string" && word != false) {
     return word.replace(word[0], word[0].toUpperCase());
