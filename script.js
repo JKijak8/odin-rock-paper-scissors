@@ -1,7 +1,7 @@
-function getComputerChoice() {
-  const choices = ["rock", "paper", "scissors"];
+const CHOICES = ["rock", "paper", "scissors"];
 
-  return choices[Math.floor(Math.random() * choices.length)];
+function getComputerChoice() {
+  return CHOICES[Math.floor(Math.random() * CHOICES.length)];
 }
 
 function getHumanChoice() {
@@ -53,3 +53,11 @@ function capitalize(word) {
     return word.replace(word[0], word[0].toUpperCase());
   } else return word;
 }
+
+let buttons = document.getElementById("button-wrapper");
+
+buttons.addEventListener("click", (e) => {
+  if (CHOICES.includes(e.target.id)) {
+    playRound(e.target.id, getComputerChoice());
+  }
+});
