@@ -9,25 +9,22 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  const winnerText = document.getElementById("winner-text");
+
   if (humanChoice === computerChoice) {
-    console.log("Tie! Nobody wins.");
-    return playRound(getHumanChoice(), getComputerChoice());
+    winnerText.textContent = "Tie! Nobody wins.";
   } else if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
     (humanChoice === "scissors" && computerChoice === "paper")
   ) {
-    console.log(
-      `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`
-    );
-    return "human";
+    winnerText.textContent = `You win! ${capitalize(
+      humanChoice
+    )} beats ${capitalize(computerChoice)}.`;
   } else {
-    console.log(
-      `You lose! ${capitalize(computerChoice)} beats ${capitalize(
-        humanChoice
-      )}.`
-    );
-    return "computer";
+    winnerText.textContent = `You lose! ${capitalize(
+      computerChoice
+    )} beats ${capitalize(humanChoice)}.`;
   }
 }
 
